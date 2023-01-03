@@ -1,0 +1,11 @@
+all:
+  hosts:
+#    localhost
+  children:
+    master:
+      hosts:
+        masternode
+    slave:
+      hosts:
+        slavenode
+
