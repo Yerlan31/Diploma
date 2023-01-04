@@ -1,0 +1,4 @@
+- hosts: 'workers, masters'
+  become: true
+  roles:
+    - name: create_users
