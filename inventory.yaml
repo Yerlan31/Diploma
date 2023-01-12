@@ -1,0 +1,13 @@
+all:
+  hosts:
+#    localhost
+  children:
+    masters:
+      hosts:
+        master_node:
+          ansible_host: 127.0.0.1
+          ansible_port: 2222
+    slaves:
+      hosts:
+        slave_node
+
