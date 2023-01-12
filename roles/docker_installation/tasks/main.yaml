@@ -5,6 +5,8 @@
         update_cache: true
 
     - name: Install required system packages
+      become: true
+      become_user: root
       apt:
         pkg:
           - apt-transport-https
@@ -13,6 +15,7 @@
           - software-properties-common
           - gnupg
           - lsb-release
+          - runc
           - python3-pip
           - virtualenv
           - python3-setuptools
