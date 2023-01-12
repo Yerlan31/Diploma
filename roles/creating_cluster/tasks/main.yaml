@@ -1,15 +1,32 @@
 ---
+- name: Remove /etc/containerd/config.toml
+  become: yes
+  become_user: root
+  shell: rm /etc/containerd/config.toml
+
+- name: Restart containerd
+  ansible.builtin.systemd:
+    state: restarted
+    daemon_reload: yes
+    name: containerd
+
 - name: initialize the cluster
   shell: kubeadm init --pod-network-cidr=10.244.0.0/16
   args:
     chdir: $HOME
     creates: cluster_initialized.txt
 
+- name: Install ACL
+  apt:
+    name: 'acl'
+    update_cache: yes
+    cache_valid_time: '{{ 60 * 60 * 24 }}'
+
 - name: create .kube directory
   become: yes
-  become_user: kube
+  become_user: root
   file:
-    path: $HOME/.kube
+    path: /home/kube/.kube
     state: directory
     mode: 0755
 
