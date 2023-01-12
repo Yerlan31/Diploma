@@ -11,6 +11,8 @@
           - ca-certificates
           - curl
           - software-properties-common
+          - gnupg
+          - lsb-release
           - python3-pip
           - virtualenv
           - python3-setuptools
@@ -28,6 +30,24 @@
         state: present
 
     - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
+
+    - name: Install docker-ce-cli
+      apt:
+        name: docker-ce-cli
+        state: latest
+        update_cache: true
+    
+    - name: Install containerd.io
+      apt:
+        name: containerd.io
+        state: latest
+        update_cache: true
+    
+    - name: Install docker-compose-plugin
       apt:
         name: docker-ce
         state: latest
