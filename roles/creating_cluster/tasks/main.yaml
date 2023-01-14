@@ -60,3 +60,9 @@
   become: yes
   become_user: root
   local_action: copy content="{{ kubernetes_join_command.stdout_lines[0] }}" dest="/tmp/kubernetes_join_command"
+
+- name: Enable Master node for 
+  become: yes
+  become_user: kube
+  shell: kubectl taint node k9s node-role.kubernetes.io/control-plane:NoSchedule-
+

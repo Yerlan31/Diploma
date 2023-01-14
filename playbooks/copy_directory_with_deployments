@@ -1,0 +1,6 @@
+- hosts: 'workers, masters'
+  become: true
+  become_user: kube
+  roles:
+    - name: copy_directory_with_deployments
+
