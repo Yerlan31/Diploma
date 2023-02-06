@@ -66,6 +66,7 @@ spec:
   type: NodePort
   ports:
     - port: 3000
+      protocol: TCP
       nodePort: 30004
   selector:
     app: grafana
