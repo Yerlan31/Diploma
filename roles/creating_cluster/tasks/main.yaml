@@ -57,6 +57,11 @@
     msg: "{{ kubernetes_join_command.stdout }}"
 
 - name: Copy join command to local file.
-  become: yes
-  become_user: root
+  become: False
   local_action: copy content="{{ kubernetes_join_command.stdout_lines[0] }}" dest="/tmp/kubernetes_join_command"
+
+- name: Enable Master node for deploying 
+  become: yes
+  become_user: kube
+  shell: kubectl taint node {{ansible_hostname}} node-role.kubernetes.io/control-plane:NoSchedule-
+
