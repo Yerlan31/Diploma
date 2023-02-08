@@ -36,22 +36,48 @@
 - name: Apply new settings
   command: sudo sysctl --system
 
+- name: Update Package Cache (apt/Ubuntu)
+  become: yes
+  apt:
+    update_cache: yes
+  changed_when: false
+  when: ansible_distribution == "Ubuntu"
+
 - name: install containerd
-  shell: |
-          sudo apt-get update && sudo apt-get install -y containerd
-          sudo mkdir -p /etc/containerd
-          sudo containerd config default | sudo tee /etc/containerd/config.toml
-          sudo systemctl restart containerd
+  ansible.builtin.package:
+    name: containerd.io
+    state: present
+
+- name: Create /etc/containerd
+  become: yes
+  file:
+    path: /etc/containerd
+    state: directory
+    mode: 0755
+
+- name: Restart containerd
+  ansible.builtin.systemd:
+    state: restarted
+    name: containerd
 
 - name: disable swap
   shell: |
           sudo swapoff -a
           sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
-- name: install and configure dependencies
-  shell: |
-          sudo apt-get update && sudo apt-get install -y apt-transport-https curl
-          curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+- name: install apt-transport-https, curl
+  ansible.builtin.package:
+    name: {{ item }}
+    state: present
+  with_items:
+    - apt-transport-https
+    - curl
+
+- name: Add google key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg 
+    state: present
 
 - name: Create kubernetes repo file
   file:
@@ -66,6 +92,5 @@
 
 - name: install kubernetes
   shell: |
-          sudo apt-get update
           sudo apt-get install -y kubelet=1.26.0-00 kubeadm=1.26.0-00 kubectl=1.26.0-00
           sudo apt-mark hold kubelet kubeadm kubectl
