@@ -1,5 +1,6 @@
 - hosts: 'workers, masters'
   become: true
   roles:
-    - name: installing
-
+    - name: containerd
+    - name: curl
+    - name: kubernetes
