@@ -39,10 +39,15 @@
     remote_src: yes
     owner: kube
 
+- name: Copy Calico network engine file
+  ansible.builtin.file:
+    src: {{playbook_dir}}
+    dest: /tmp/calico.yaml
+
 - name: install Pod network
   become: yes
   become_user: kube
-  shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
+  shell: kubectl apply -f /tmp/calico.yaml 
   args:
     chdir: $HOME
     
