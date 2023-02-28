@@ -39,9 +39,11 @@
     remote_src: yes
     owner: kube
 
-- name: Copy Calico network engine file
-  ansible.builtin.file:
-    src: {{playbook_dir}}
+- name: Create a symbolic link
+  become: true
+  become_user: root
+  ansible.builtin.template:
+    src: "{{playbook_dir}}/../cluster_config/calico.yaml"
     dest: /tmp/calico.yaml
 
 - name: install Pod network
