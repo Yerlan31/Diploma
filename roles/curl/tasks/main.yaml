@@ -7,7 +7,7 @@
 
 - name: install apt-transport-https, curl
   ansible.builtin.package:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
   with_items:
     - apt-transport-https

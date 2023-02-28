@@ -13,7 +13,7 @@
 
 - name: Load overlay and br_netfilter kernel modules
   community.general.modprobe:
-    name: {{item}}
+    name: "{{ item }}"
     state: present
   with_items:
     - overlay

@@ -36,7 +36,7 @@
       - kubelet=1.26.0-00
 
 - name: Hold kubeadm
-    ansible.builtin.dpkg_selections:
+  ansible.builtin.dpkg_selections:
     name: "{{ item }}"
     selection: hold
   with_items:
