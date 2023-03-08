@@ -8,4 +8,6 @@ kubectl taint node k9s node-role.kubernetes.io/control-plane:NoSchedule-
 
 http://prometheus.kube-system.svc.cluster.local:9091 - DNS for Grafana -> Prometheus
 
+Grafana dashboard is 315
+
 Thanks for attention!
