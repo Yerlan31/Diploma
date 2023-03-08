@@ -3,30 +3,38 @@ kind: Ingress
 metadata:
   name: minimal-ingress
   namespace: kube-system
-# annotations:
-#    kubernetes.io/ingress.class: nginx
+  annotations:
+    kubernetes.io/ingress.allow-http: "true"
+  #    kubernetes.io/ingress.class: nginx
 #    ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
+  - host: jenkins.bmstu.ru
+    http:
       paths:
-#      - path: /
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: nginx-service
- #           port:
- #             number: 80
-
-      - path: /nginx
+      - path: /
         pathType: Prefix
         backend:
           service:
-            name: nginx-service
+            name: jenkins-service
             port:
-              number: 80
+              number: 8080
 
-      - path: /grafana
+  - host: prometheus.bmstu.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus
+            port:
+              number: 9090
+
+  - host: grafana.bmstu.ru
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:

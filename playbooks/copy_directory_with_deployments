@@ -1,6 +1,8 @@
 - hosts: 'workers, masters'
   become: true
-  become_user: kube
-  roles:
-    - name: copy_directory_with_deployments
-
+#  become_user: kube
+  tasks:
+    - name: Create a symbolic link
+      ansible.builtin.template:
+        src: "{{playbook_dir}}/../cluster_config/calico.yaml"
+        dest: /tmp/calico.yaml

@@ -1,0 +1,14 @@
+- hosts: 'workers, masters'
+  become: true
+  vars:
+    container_count: 4
+    default_container_name: docker
+    default_container_image: ubuntu
+    default_container_command: sleep 1d
+  roles:
+    - name: create_users
+    - name: disable_swap
+    - name: containerd
+    - name: curl
+    - name: docker_installation
+    - name: kubernetes     

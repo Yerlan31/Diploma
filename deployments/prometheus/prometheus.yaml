@@ -7,7 +7,6 @@ metadata:
   name: prometheus
   namespace: kube-system
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: prometheus
@@ -17,7 +16,7 @@ spec:
         app: prometheus
     spec:
       containers:
-      - image: prom/prometheus:v2.0.0
+      - image: prom/prometheus:v2.42.0
         name: prometheus
         command:
         - "/bin/prometheus"
