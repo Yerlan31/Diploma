@@ -27,9 +27,9 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: node-exporter
+            name: prometheus
             port:
-              number: 9100
+              number: 9090
 
   - host: grafana.bmstu.ru
     http:
