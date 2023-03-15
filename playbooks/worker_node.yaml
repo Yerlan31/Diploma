@@ -1,4 +1,4 @@
-- hosts: 'workers, masters'
+- hosts: 'workers'
   become: true
   vars:
     container_count: 4
@@ -11,4 +11,5 @@
     - name: containerd
     - name: curl
     - name: docker_installation
-    - name: kubernetes     
+    - name: kubernetes    
+    - name: connect_worker_node 
