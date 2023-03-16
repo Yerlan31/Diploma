@@ -9,5 +9,6 @@ all:
           ansible_port: 2222
     slaves:
       hosts:
-        slave_node
-
+        slave_node:
+          ansible_host: 127.0.0.1
+          ansible_port: 2222

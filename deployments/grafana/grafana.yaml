@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: grafana
-  replicas: 1
   template:
     metadata:
       labels:
@@ -18,12 +17,10 @@ spec:
         component: core
     spec:
       containers:
-      - image: grafana/grafana:4.2.0
+      - image: grafana/grafana:9.2.10
         name: grafana-core
         imagePullPolicy: IfNotPresent
-        # env:
         resources:
-          # keep request = limit to keep this container in guaranteed class
           limits:
             cpu: 100m
             memory: 100Mi
@@ -31,28 +28,31 @@ spec:
             cpu: 100m
             memory: 100Mi
         env:
-          # The following env variables set up basic auth twith the default admin user and admin password.
           - name: GF_AUTH_BASIC_ENABLED
             value: "true"
           - name: GF_AUTH_ANONYMOUS_ENABLED
             value: "false"
-          # - name: GF_AUTH_ANONYMOUS_ORG_ROLE
-          #   value: Admin
-          # does not really work, because of template variables in exported dashboards:
-          # - name: GF_DASHBOARDS_JSON_ENABLED
-          #   value: "true"
-        readinessProbe:
-          httpGet:
-            path: /login
-            port: 3000
-          # initialDelaySeconds: 30
-          # timeoutSeconds: 1
+            #      readinessProbe:
+            # httpGet:
+            # path: /login
+            # port: 3000
         volumeMounts:
-        - name: grafana-persistent-storage
-          mountPath: /var
+        - name: dashboard-315
+          mountPath: /var/lib/grafana/dashboards
+        - name: dashboard-config
+          mountPath: /etc/grafana/provisioning/dashboards
+        - name: datasource-config
+          mountPath: /etc/grafana/provisioning/datasources
       volumes:
-      - name: grafana-persistent-storage
-        emptyDir: {} 
+      - name: dashboard-config
+        configMap: 
+          name: dashboard-config
+      - name: datasource-config
+        configMap: 
+          name: datasource-config
+      - name: dashboard-315
+        configMap: 
+          name: dashboard-315
 ---
 apiVersion: v1
 kind: Service
