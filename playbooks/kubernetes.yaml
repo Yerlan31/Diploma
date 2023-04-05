@@ -1,4 +1,4 @@
 - hosts: 'workers, masters'
   become: true
   roles:
-    - name: creating_cluster
+    - name: kubernetes
