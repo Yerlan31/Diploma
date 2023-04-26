@@ -45,7 +45,8 @@
 
 - name: install containerd
   ansible.builtin.package:
-    name: containerd.io
+#    name: containerd.io
+    name: containerd
     state: present
 
 - name: Create /etc/containerd

@@ -32,6 +32,10 @@
         repo: deb https://download.docker.com/linux/ubuntu focal stable
         state: present
 
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
+
     - name: Update apt and install docker-ce
       apt:
         name: docker-ce

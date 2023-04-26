@@ -5,8 +5,8 @@ all:
     masters:
       hosts:
         master_node:
-          ansible_host: 127.0.0.1
-          ansible_port: 2222
+          ansible_host: 80.90.184.159
+          ansible_port: 22
     slaves:
       hosts:
         slave_node:

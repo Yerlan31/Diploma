@@ -2,7 +2,7 @@
   become: true
 #  become_user: kube
   tasks:
-    - name: Copy directory with all kubernetes manifests
-      ansible.builtin.copy:
-        src: "{{playbook_dir}}/../deployments"
-        dest: /tmp/deployments
+  - name: Copy directory with all kubernetes manifests
+    ansible.builtin.copy
+      src: "{{playbook_dir}}/../deployments"
+      dest: /tmp/deployments

@@ -3,7 +3,7 @@
   shell: |
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
     kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
-    kubectl label node yermastervm ingress-ready=true  
+    kubectl label node "{{ansible_hostname}}" ingress-ready=true  
 
 - name: Applying everything 
   shell: |
