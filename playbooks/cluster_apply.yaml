@@ -1,4 +1,5 @@
 - hosts: 'workers, masters'
-  become: true
+  become: yes
+  become_user: kube
   roles:
     - name: cluster_apply
