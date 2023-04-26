@@ -7,4 +7,4 @@
 
 - name: Applying everything 
   shell: |
-    kubectl apply -f deployments
+    kubectl apply -f /tmp/deployments/grafana

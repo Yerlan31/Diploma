@@ -12,7 +12,7 @@
     daemon_reload: yes
     name: containerd
 
-- name: initialize the cluster
+- name: Initialize the cluster
   shell: kubeadm init --pod-network-cidr=10.244.0.0/16
   args:
     chdir: $HOME
@@ -24,7 +24,7 @@
     #    update_cache: yes
     #    cache_valid_time: '{{ 60 * 60 * 24 }}'
 
-- name: create .kube directory
+- name: Create .kube directory
   become: yes
   become_user: root
   file:
@@ -32,7 +32,7 @@
     state: directory
     mode: 0755
 
-- name: copies admin.conf to user's kube config
+- name: Copies admin.conf to user's kube config
   copy:
     src: /etc/kubernetes/admin.conf
     dest: /home/kube/.kube/config
@@ -46,7 +46,7 @@
     src: "{{playbook_dir}}/../cluster_config/calico.yaml"
     dest: /tmp/calico.yaml
 
-- name: install Pod network
+- name: Install Pod network
   become: yes
   become_user: kube
   shell: kubectl apply -f /tmp/calico.yaml 

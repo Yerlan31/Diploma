@@ -2,10 +2,7 @@
   become: true
 #  become_user: kube
   tasks:
-    - name: print Name
-      debug:
-        msg: "{{ansible_hostname}}"
-    - name: Create a symbolic link
-      ansible.builtin.template:
-        src: "{{playbook_dir}}/../cluster_config/calico.yaml"
-        dest: /tmp/calico.yaml
+  - name: Copy directory with all kubernetes manifests
+    ansible.builtin.copy
+      src: "{{playbook_dir}}/../deployments"
+      dest: /tmp/deployments

@@ -2,5 +2,3 @@
   become: true
   roles:
     - name: containerd
-    - name: curl
-    - name: kubernetes
