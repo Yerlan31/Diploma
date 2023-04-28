@@ -5,4 +5,4 @@
     - name: Copy directory with all kubernetes manifests
       ansible.builtin.copy:
         src: "{{playbook_dir}}/../deployments"
-        dest: /tmp/deployments
+        dest: /tmp/

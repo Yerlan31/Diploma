@@ -7,4 +7,6 @@
 
 - name: Applying everything 
   shell: |
+    kubectl apply -f /tmp/deployments/node-exporter
+    kubectl apply -f /tmp/deployments/prometheus
     kubectl apply -f /tmp/deployments/grafana

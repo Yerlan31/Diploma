@@ -13,4 +13,4 @@
     - name: docker_installation
     - name: kubernetes     
     - name: creating_cluster 
-      #    - name: cluster_apply
+    - name: cluster_apply
