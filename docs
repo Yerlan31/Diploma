@@ -1,0 +1,84 @@
+<h1>Kubernetes Cluster</h1>
+
+<h3>Документация по установке Kubernetes cluster.</h3>
+
+<h2>Системные требования:</h2>
+
+<p>Master Node:</p>
+
+<ul>
+	<li>2 CPU - 2.4 HGz +</li>
+	<li>RAM - 4GB</li>
+</ul>
+
+<p>Worker Node:</p>
+
+<ul>
+	<li>1 CPU - 2.4 HGz +</li>
+	<li>RAM - 2GB</li>
+</ul>
+
+<h2>Ansible:</h2>
+
+<h4>&nbsp;Описание струтуры репозитория</h4>
+
+<p>Для автоматизированной установки кластера Kubernetes будем использовать Ansible - инструмент IaaC. Ansible playbooks расположены здесь 
+https://bmstu.codes/iu5/infrastructure/department-services/environment-setup/-/tree/ansible_playbooks/infra-setup (временно&nbsp;в ветке ansible_playbooks)</p>
+
+<p>Репозиторий хранит в себе:</p>
+
+<ul>
+	<li>deployments - директория с манифестами (Deployments, DeamonSets, PVC и т.д.), образующими инфораструктуру кластера</li>
+	<li>playbooks -директория с плейбуками (сценариями установки необходимого ПО для последующей установки кластера)</li>
+	<li>ansible.cfg - настройки для Ansible&nbsp;</li>
+	<li>cluster config - директория с манифестами для работоспособности кластера</li>
+	<li>group_vars, &nbsp;host_vars, inventory - хранят в себе переменные</li>
+	<li>roles - директория&nbsp;с ролями Ansible (части playbooks)&nbsp;</li>
+</ul>
+
+<p>Подробнее про структуру каталогов Ansible см. документацию&nbsp;- https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html</p>
+
+<p>Изначально необходимо указать IP адреса, логин и пароль целевых инстансов в файлах host_vars/master_node,&nbsp;host_vars/worker_node inventory.yaml</p>
+
+<p>Для установки на пустые инстансы, необходимо воспользоваться плейбуками playbooks/master_node.yaml и playbooks/worker_node.yaml соответственно. При использовании серверов, уже имеющих некоторое необходимое ПО для работоспособности 
+Kubernetes кластера, существуют отдельные плейбуки для установки компонентов.</p>
+
+<ul>
+	<li>cluster_apply.yaml - установка манифестов в кластер&nbsp;&nbsp;</li>
+	<li>copy_directory_with_deployments - копирование директории cluster_config в целевую ВМ</li>
+	<li>create_users.yaml - создание Linux&nbsp;пользователей для Ansible&nbsp;</li>
+	<li>creating_cluster.yaml - создание кластера &nbsp;K8s</li>
+	<li>docker_installation.yaml - установка Docker</li>
+	<li>installing.yaml - установка containerd, curl, kubeadm ...</li>
+</ul>
+
+<h4>&nbsp;Пошаговая установка</h4>
+
+<p>В первую очередь - необходимо указать IP адреса машин, а также пароль от sudo в файлах inventory.yaml, ansible.cfg и host_vars/*</p>
+
+<p><img src="AnsiblePswd.png" /> host_vars/*</p>
+
+<p><img src="ansiblecfg.png" /> Ansible.cfg</p>
+
+<p>Пример запуска плейбука:</p>
+
+<pre>
+ansible-playbook playbooks/master_node.yaml --ask-vault-password</pre>
+
+<p><code>playbooks/master_node.yaml </code> - расположение плейбука<br />
+<code>--ask-vault-password</code>- ввести пароль Ansible-Vault</p>
+
+<p>Результат:</p>
+
+<p><img src="Playbook.png" /></p>
+
+<p><img src="playbookdone.png" /></p>
+
+<h4>Проверка работоспособности:</h4>
+
+<p>Заходим на удаленный хост:</p>
+
+<p><img src="Result.png" /></p>
+
+<p>Токен для связи нод в класетр&nbsp;лежит в директории - /tmp/kubernetes_join_command</p>
+
