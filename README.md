@@ -33,4 +33,9 @@ Prerequisite: <br>
       client_key             = "LS0tLS1CRUdJTiB..."
       cluster_ca_certificate = "LS0tLS1CRUdJTiB..."
    ```
+   Initialize, Plan and Apply all the stuff!
+   <code>terraform init</code>
+   <code>terraform plan</code>
+   <code>terraform apply</code>
+   
 Thanks for attention!
