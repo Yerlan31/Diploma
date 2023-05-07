@@ -34,9 +34,3 @@ Prerequisite: <br>
       cluster_ca_certificate = "LS0tLS1CRUdJTiB..."
    ```
 Thanks for attention!
-
-```
-git status
-git add
-git commit
-```
