@@ -19,6 +19,10 @@ Installing Terraform<br>
 Check terraform version <br> 
 <code>terraform -version</code>
 
-
-
+"Terraform" folder contains everything for deploying Kubernetes enitities to Cluster.<br>
+Prerequisite: <br>
+<ul>
+  <li>Execute command: </li>
+  <li>Execute command: Salam </li>
+</ul>
 Thanks for attention!
