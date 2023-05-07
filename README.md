@@ -17,7 +17,7 @@ Installing Terraform<br>
 <code>brew install terraform</code><br>
 
 Check terraform version
-<code>terraform -version </code>
+<code>terraform -version <br> </code>
 
 
 
