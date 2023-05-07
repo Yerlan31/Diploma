@@ -23,6 +23,13 @@ Check terraform version <br>
 Prerequisite: <br>
 <ul>
   <li>Execute command in the kubernetes control plane: <br> <code>kubectl config view --minify --flatten </code> </li>
-  <li>Copy and paste cluster credentials and host to <b>terraform.tfvars</b> </li>
+  <li>Copy and paste cluster credentials and host to <b>terraform.tfvars:</b> <br>
+    ```
+      host                   = "https://127.0.0.1:32768"
+      client_certificate     = "LS0tLS1CRUdJTiB..."
+      client_key             = "LS0tLS1CRUdJTiB..."
+      cluster_ca_certificate = "LS0tLS1CRUdJTiB..."
+    ```
+  </li>
 </ul>
 Thanks for attention!
