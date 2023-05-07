@@ -22,7 +22,7 @@ Check terraform version <br>
 "Terraform" folder contains everything for deploying Kubernetes enitities to Cluster.<br>
 Prerequisite: <br>
 <ul>
-  <li>Execute command: </li>
+  <li>Execute command in the kubernetes control plane: <br> <code>kubectl config view --minify --flatten </code> </li>
   <li>Execute command: Salam </li>
 </ul>
 Thanks for attention!
