@@ -11,10 +11,10 @@ http://prometheus.kube-system.svc.cluster.local:9090 - DNS for Grafana -> Promet
 Grafana dashboard is 315
 
 ### Terraform
-Installing Terraform
-<code>brew tap hashicorp/tap</code>
-<code>brew update</code>
-<code>brew install terraform</code>
+Installing Terraform<br>
+<code>brew tap hashicorp/tap</code> <br>
+<code>brew update</code><br>
+<code>brew install terraform</code><br>
 
 
 
