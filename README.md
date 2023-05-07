@@ -33,3 +33,9 @@ Prerequisite: <br>
     ```
 </ul>
 Thanks for attention!
+
+```
+git status
+git add
+git commit
+```
