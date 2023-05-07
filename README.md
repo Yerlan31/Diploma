@@ -23,6 +23,6 @@ Check terraform version <br>
 Prerequisite: <br>
 <ul>
   <li>Execute command in the kubernetes control plane: <br> <code>kubectl config view --minify --flatten </code> </li>
-  <li>Execute command: Salam </li>
+  <li>Copy and paste cluster credentials and host to <b>terraform.tfvars</b> </li>
 </ul>
 Thanks for attention!
